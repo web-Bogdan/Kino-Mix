@@ -1,0 +1,56 @@
+.Header{
+  height: 800px;
+  background: url("https://i.playground.ru/p/nqkBjn4OkNy_-tSEhpYhVA.jpeg") no-repeat center / cover;
+  position: relative;
+  z-index: 2;
+  &::before{
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.58);
+    z-index: -1;
+  }
+  &__logo{
+    font-size: 2.7rem;
+    color: #f3cc14;
+    font-weight: 600;
+    display: inline-block;
+    text-decoration: none;
+    padding-top: 80px;
+  }
+}
+
+.navbar{
+  position: absolute;
+  bottom: 80px;
+  &__menu{
+    display: flex;
+    list-style: none;
+  }
+  &__link{
+    font-size: 1.5rem;
+    color: #ffffff;
+    text-decoration: none;
+    margin-left: 150px;
+    transition: color .3s ease;
+    position: relative;
+    &:hover{
+      color: #f3cc14;
+    }
+    &::before{
+      content: "";
+      position: absolute;
+      bottom: -4px;
+      display: inline-block;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background-color: #f3cc14;
+      transition: width .5s ease-in-out;
+    }
+    &:hover.navbar__link::before{
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,18 @@
+.Popular{
+  position: relative;
+  &::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    height: 5px;
+    width: 100%;
+    background: linear-gradient(to top, #1e1a1a, black);
+    z-index: 1000;
+  }
+  &__title{
+    padding-top: 100px;
+  }
+  &__cup-icon{
+    color: #e7550c;
+  }
+}
