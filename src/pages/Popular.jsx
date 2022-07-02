@@ -1,10 +1,11 @@
 import React from 'react';
-import Loading from "../Loader/Loader";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFireAlt} from '@fortawesome/free-solid-svg-icons'
-import "../styles/Popular.scss";
-import {KEY,     URL_POPULAR} from "../utils/utils";
 import {Link} from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFireAlt} from '@fortawesome/free-solid-svg-icons'
+import {KEY, URL_POPULAR} from "../utils/consts";
+import Loading from "../components/Loader";
+import "../styles/Popular.scss";
+
 const Popular = ({isLoading, list, getFilms, setSelectedFilm, activePage, setActivePage, onClick, colorPopular}) => {
     const pagesCount = [];
     for(let i = 0; i < list.pagesCount; i++){
@@ -16,15 +17,14 @@ const Popular = ({isLoading, list, getFilms, setSelectedFilm, activePage, setAct
         getFilms(URL_POPULAR, KEY);
     }, []);
     return (
-        <div className="Popular">
+        <div className="popular">
             <div className="container">
-                <h2 className="Popular__title title ">Популярные фильмы <FontAwesomeIcon className='Popular__cup-icon' icon={faFireAlt}></FontAwesomeIcon> </h2>
+                <h2 className="popular__title title ">Популярные фильмы <FontAwesomeIcon className='Popular__cup-icon' icon={faFireAlt}/> </h2>
                     {isLoading ?
-                    <Loading></Loading>
+                    <Loading/>
                     :
                     <div className="films">
                     {list?.films?.length ? list.films.map((film, index) =>
-
                             <figure className="films__card" key={film + ':' + index}>
                                 <Link to={"/film/id" + film.filmId} className="films__link" onClick={() => setSelectedFilm(film.filmId)}><img className="films__picture" src={film.posterUrl} alt=""/></Link>
                                 <figcaption className="films__name">{film.nameRu}</figcaption>

@@ -1,11 +1,12 @@
 import React from 'react';
-import '../styles/Header.scss';
 import {Link} from "react-router-dom";
+import '../styles/Header.scss';
+
 const Header = ({onClick, selectedFilm}) => {
     return (
-            <header className='Header'>
+            <header className='header'>
                 <div className="container">
-                <Link className="Header__logo" to="/">КиноМикс</Link>
+                <Link className="header__logo" to="/">КиноМикс</Link>
                 <nav className="navbar">
                     <ul className="navbar__menu">
                         <li><Link className="navbar__link" to="/" >лучшее</Link></li>

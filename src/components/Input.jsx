@@ -4,11 +4,10 @@ import {faSearch, faTimes} from "@fortawesome/free-solid-svg-icons";
 
 const Input = ({value, onChange, setInputValue, onClear}) => {
     return (
-        <form className="Content__search" onSubmit={(e) => onChange(e)}>
+        <form className="content__search" onSubmit={(e) => onChange(e)}>
             <input type="text"  placeholder="Введите название фильма" value={value} onChange={(e) => setInputValue(e.target.value)}/>
-            <FontAwesomeIcon className="Content__search-icon" icon={faSearch}></FontAwesomeIcon>
-            {value && <FontAwesomeIcon className="Content__close-icon" icon={faTimes} onClick={onClear}></FontAwesomeIcon>}
-
+            <FontAwesomeIcon className="content__search-icon" icon={faSearch}/>
+            {value && <FontAwesomeIcon className="content__close-icon" icon={faTimes} onClick={onClear}/>}
         </form>
     );
 };

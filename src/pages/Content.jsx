@@ -1,11 +1,12 @@
 import React from 'react';
-import '../styles/Content.scss';
-import Loading from "../Loader/Loader";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faTrophy} from '@fortawesome/free-solid-svg-icons'
-import {KEY, URL_BETTER} from "../utils/utils";
+import Loading from "../components/Loader";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faTrophy} from '@fortawesome/free-solid-svg-icons';
+import {KEY, URL_BETTER} from "../utils/consts";
 import {Link} from "react-router-dom";
-import Input from "./Input";
+import Input from "../components/Input";
+import '../styles/Content.scss';
+
 const Content = ({list, activePage, onClick, isLoading, getColorByRate, value, onChange, onClear, getFilms, setSelectedFilm, setActivePage, setInputValue}) => {
     const pagesCount = [];
     for(let i = 0; i < list.pagesCount; i++){
@@ -17,12 +18,12 @@ const Content = ({list, activePage, onClick, isLoading, getColorByRate, value, o
         getFilms(URL_BETTER, KEY);
     }, []);
     return (
-        <div className="Content">
+        <div className="content">
             <div className="container">
-                <h2 className="Popular__title title">Лучшие фильмы <FontAwesomeIcon className='Content__fire-icon' icon={faTrophy}></FontAwesomeIcon> </h2>
-               <Input value={value} onChange={onChange} setInputValue={setInputValue} onClear={onClear}></Input>
+                <h2 className="popular__title title">Лучшие фильмы <FontAwesomeIcon className='Content__fire-icon' icon={faTrophy}/> </h2>
+               <Input value={value} onChange={onChange} setInputValue={setInputValue} onClear={onClear}/>
                 {isLoading ?
-                    <Loading></Loading>
+                    <Loading/>
                     :
                     <div className="films">
                     {list?.films?.length ? list.films.map((film, index) =>
@@ -30,7 +31,7 @@ const Content = ({list, activePage, onClick, isLoading, getColorByRate, value, o
                             <Link  className="films__link" to={"/film/id" + film.filmId} onClick={() => setSelectedFilm(film.filmId)}><img className="films__picture" src={film.posterUrl} alt=""/></Link>
                             <figcaption className="films__name">{film.nameRu}</figcaption>
                             <figcaption className="films__tags">{Object.values(film.genres.map(genre => genre['genre' || 0])).join(', ')}</figcaption>
-                            {film.rating !== 'null' ? <div className={'films__rating'} style={{'border': `2px solid ${getColorByRate(film.rating)}`}}>{film.rating}</div> : ''}
+                            {film.rating !== "null" ? <div className="films__rating" style={{'border': `2px solid ${getColorByRate(film.rating)}`}}>{film.rating}</div> : ''}
                         </figure>)
                         :
                         <h2 className="title">Нет таких фильмов</h2>

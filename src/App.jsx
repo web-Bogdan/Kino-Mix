@@ -1,14 +1,16 @@
 
-import './styles/App.scss';
-import Header from "./Components/Header";
-import Content from "./Components/Content";
+
+import Header from "./components/Header";
 import axios from "axios";
-import {URL_BETTER, KEY, URL_SEARCH} from "./utils/utils";
 import React from "react";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import Popular from "./Components/Popular";
-import Film from "./Components/Film";
-import AboutUs from "./Components/AboutUs";
+import {URL_BETTER, KEY, URL_SEARCH} from "./utils/consts";
+import Content from "./pages/Content";
+import Popular from "./pages/Popular";
+import Film from "./pages/Film";
+import AboutUs from "./pages/AboutUs";
+import './styles/App.scss';
+
 function App() {
     const [filmsList, setFilmsList] = React.useState([]);
     const [activePage, setActivePage] = React.useState(1);
@@ -77,12 +79,12 @@ function App() {
   return (
     <div className="App">
         <BrowserRouter>
-            <Header onClick={randomFilm} selectedFilm={selectedFilm}></Header>
+            <Header onClick={randomFilm} selectedFilm={selectedFilm}/>
             <Routes>
-                <Route exact path={"/"} element={ <Content list={filmsList} activePage={activePage} setActivePage={setActivePage} onClick={changePage} isLoading={isLoading} getFilms={getFilms} getColorByRate={getColorByRate} value={searchValue} onChange={searchQuery} setSelectedFilm={setSelectedFilm} setInputValue={setInputValue} onClear={onClear}></Content>}/>
-                <Route  path={"/popular"} element={ <Popular list={filmsList} isLoading={isLoading} colorPopular={colorPopular} getFilms={getFilms} setSelectedFilm={setSelectedFilm} activePage={activePage} setActivePage={setActivePage} onClick={changePage}></Popular>}/>
-                <Route  path={"/film/:id"} element={ <Film list={filmsList} selectedFilm={selectedFilm} getFilms={getFilms}></Film>}/>
-                <Route  path={"/about"} element={ <AboutUs></AboutUs>}/>
+                <Route exact path={"/"} element={ <Content list={filmsList} activePage={activePage} setActivePage={setActivePage} onClick={changePage} isLoading={isLoading} getFilms={getFilms} getColorByRate={getColorByRate} value={searchValue} onChange={searchQuery} setSelectedFilm={setSelectedFilm} setInputValue={setInputValue} onClear={onClear}/>}/>
+                <Route  path={"/popular"} element={ <Popular list={filmsList} isLoading={isLoading} colorPopular={colorPopular} getFilms={getFilms} setSelectedFilm={setSelectedFilm} activePage={activePage} setActivePage={setActivePage} onClick={changePage}/>}/>
+                <Route  path={"/film/:id"} element={ <Film list={filmsList} selectedFilm={selectedFilm} getFilms={getFilms}/>}/>
+                <Route  path={"/about"} element={ <AboutUs/>}/>
             </Routes>
         </BrowserRouter>
     </div>
